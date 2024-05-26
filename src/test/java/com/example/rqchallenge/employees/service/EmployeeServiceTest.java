@@ -17,6 +17,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.client.RestClientException;
 
 
@@ -179,7 +180,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void testGetEmployeeById() throws Exception {
+    void testGetEmployeeById() {
 
         String restApiResponse = "{\"status\":\"success\",\"data\":{\"id\":7,\"employee_name\":\"HerrodChandler\",\"employee_salary\":137500,\"employee_age\":59,\"profile_image\":\"\"},\"message\":\"Successfully!All Record has been fetched.\"}";
 
@@ -288,6 +289,22 @@ public class EmployeeServiceTest {
         Assertions.assertEquals("Employee1_rawdata",employeeList.get(0));
         Assertions.assertEquals("Employee9_rawdata", employeeList.get(8));
         Assertions.assertEquals("Employee10_rawdata",employeeList.get(9));
+    }
+
+    @Test
+    void testTopTenEmployeesEmptyResponse() {
+        String restApiResponse = "{\"status\":\"success\",\"data\":[],\"message\":\"Successfully!All records has been fetched.\"}";
+        restUtil.when(
+                        () -> RestUtil.getCall(
+                                "https://dummy.restapiexample.com/api/v1/employees",
+                                String.class
+                        ))
+                .thenReturn(restApiResponse);
+
+        List<String> employeeList = employeeService.getTopHighestEarningEmployeeNames();
+        // In case of empty data, employee list should be taken from rawdata
+        Assertions.assertEquals(10,employeeList.size());
+        Assertions.assertEquals("Employee10_rawdata", employeeList.get(9));
     }
 
     @Test

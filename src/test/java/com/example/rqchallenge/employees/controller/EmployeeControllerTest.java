@@ -123,4 +123,16 @@ public class EmployeeControllerTest {
         Assertions.assertEquals(100000, responseEntity.getBody().getSalary());
     }
 
+    @Test
+    void testDeleteEmployee() {
+
+        Mockito.when(
+                employeeService.deleteEmployee("1")
+        ).thenReturn("GP");
+
+        ResponseEntity<String> responseEntity = employeeController.deleteEmployeeById("1");
+        Assertions.assertEquals("GP", responseEntity.getBody());
+        Assertions.assertEquals(200, responseEntity.getStatusCodeValue());
+    }
+
 }

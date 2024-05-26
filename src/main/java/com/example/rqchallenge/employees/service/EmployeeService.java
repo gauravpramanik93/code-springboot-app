@@ -74,7 +74,7 @@ public class EmployeeService {
             List<String> employeeList = ParserUtil.getTopEarningEmployees(response, 10);
             if(employeeList == null || employeeList.isEmpty()){
                 log.info("Fetching top 10 highest earning mock employees from raw data.");
-                throw new Exception();
+                return RawDataHelper.getTopTenEarningEmployees();
             }
             return employeeList;
         } catch (Exception ex){
