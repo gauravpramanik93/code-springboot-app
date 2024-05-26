@@ -8,6 +8,7 @@ import com.example.rqchallenge.employees.util.Constants;
 import com.example.rqchallenge.employees.util.ParserUtil;
 import com.example.rqchallenge.employees.util.RawDataHelper;
 import com.example.rqchallenge.employees.util.RestUtil;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.*;
 
 @Service
 @Slf4j
+@Retry(name = "employeeService")
 public class EmployeeService {
 
     private static final String BASE_URL = "https://dummy.restapiexample.com/api/v1";
