@@ -1,4 +1,4 @@
-package com.example.rqchallenge;
+package com.example.rqchallenge.employees;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

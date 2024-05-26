@@ -13,7 +13,7 @@ import java.util.List;
 public class RawDataHelper {
 
     public static List<Employee> getAllEmployees() {
-        log.info("Fetching raw data for getAllEmployee");
+        log.info("Fetching raw data for getAllEmployees");
         List<Employee> list = new ArrayList<>();
         list.add(new Employee("1000", "Anish_" + Constants.RAWDATA, 2432432, 30, ""));
         list.add(new Employee("2000", "Ranjan_" + Constants.RAWDATA, 24234, 32, ""));
@@ -22,18 +22,19 @@ public class RawDataHelper {
     }
 
     public static List<Employee> getEmployeeByName(String name) {
-        log.info("Fetching raw data for getAllEmployee");
+        log.info("Fetching raw data for getEmployeeByName");
         List<Employee> list = new ArrayList<>();
         list.add(new Employee("1000", name + " " + Constants.RAWDATA, 55000, 30, ""));
         return list;
     }
 
     public static Employee getEmployeeById(String id) {
-        log.debug("Providing raw data for getEmployeeById : {}", id);
+        log.info("Fetching raw data for getEmployeeById : {}", id);
         return new Employee(id, "Test_" + Constants.RAWDATA, 31, 435552, "");
     }
 
     public static List<String> getTopTenEarningEmployees(){
+        log.info("Fetching raw data for getTopTenEarningEmployees");
         return List.of("Employee1_" + Constants.RAWDATA,"Employee2_" + Constants.RAWDATA,
                 "Employee3_" + Constants.RAWDATA, "Employee4_" + Constants.RAWDATA,
                 "Employee5_" + Constants.RAWDATA, "Employee6_" + Constants.RAWDATA,
